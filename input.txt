@@ -1,32 +1,79 @@
-'fb01', 10001, '2017-04-01', '2017-05-08', 501;
-'fb01', 10004, '2017-06-15', '2017-06-15', 601;
-'fb01', 10008, '2017-01-02', '2017-02-15', 601;
-'fb01', 10010, '2017-03-02', '2017-03-15', 501;
-'fb01', 10005, '2017-07-02', '2017-08-07', 501;
-'fb01', 10002, '2017-09-04', '2017-09-29', 601;
-'fb01', 10001, '2017-10-01', '2017-11-01', 701;
-'fb02', 10003, '2018-01-05', '2018-02-04', 1001;
-'fb02', 10005, '2018-03-12', '2018-03-29', 1101;
-'fb02', 10008, '2018-07-05', '2018-07-15', 1001;
-'fb02', 10010, '2018-12-12', '2018-12-23', 1101;
-'ch01', 10006, '2018-04-21', '2018-05-02', 1101;
-'ch02', 10002, '2018-06-01', '2018-06-16', 801;
-'ch01', 10008, '2018-01-21', '2018-02-03', 1101;
-'ch02', 10010, '2018-12-01', '2018-12-16', 801;
-'dc01', 10007, '2019-01-13', '2019-02-15', 1001;
-'dc01', 10003, '2019-03-20', '2019-04-20', 1001;
-'dc01', 10008, '2019-04-25', '2019-05-15', 1001;
-'dc01', 10010, '2019-06-20', '2019-07-20', 1001;
-'fb01', 10001, '2018-04-01', '2018-05-08', 501;
-'fb01', 10004, '2018-06-15', '2018-06-15', 601;
-'fb01', 10008, '2018-01-02', '2018-02-15', 601;
-'fb01', 10010, '2018-03-02', '2018-03-15', 501;
-'fb01', 10005, '2018-07-02', '2018-08-07', 501;
-'fb01', 10002, '2018-09-04', '2018-09-29', 601;
-'fb01', 10001, '2018-10-01', '2018-11-01', 701;
-'fb02', 10003, '2019-01-05', '2019-02-04', 1001;
-'fb02', 10005, '2019-03-12', '2019-03-29', 1101;
-'fb02', 10008, '2019-07-05', '2019-07-15', 1001;
-'ch01', 10006, '2019-04-21', '2019-05-02', 1101;
-'ch02', 10002, '2019-06-01', '2019-06-16', 801;
-'ch01', 10008, '2019-01-21', '2019-02-03', 1101
+
+CREATE TABLE `AQUA_DETAILS` (
+    `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+    `cust_phone_number` char(12) NOT NULL ,
+    `cust_name` char(30) NOT NULL,
+     `cust_address` char(60) DEFAULT NULL,
+      `model_name` char(40) NOT NULL,
+      `date_of_work` datetime NOT NULL,
+      `month_of_work` tinyint(1) NOT NULL,
+       `technician_name` char(40) NOT NULL,
+        `part_ccv` int DEFAULT NULL,
+        `part_sedimentalfilter` int DEFAULT NULL,
+        `part_carbonfilter` int DEFAULT NULL,
+        `part_romembrane` int DEFAULT NULL,
+        `part_multilayer` int DEFAULT NULL,
+        `part_ppspun` int DEFAULT NULL,
+        `part_pump` int DEFAULT NULL,
+        `part_sv` int DEFAULT NULL,
+        `part_smps` int DEFAULT NULL,
+        `part_vvlamp` int DEFAULT NULL,
+        `part_service` int DEFAULT NULL,
+		`is_amc` boolean DEFAULT NULL,
+    `amc_date` datetime DEFAULT NULL,
+    `is_amc_renewed`  boolean DEFAULT FALSE,
+    PRIMARY KEY(`id`,`cust_phone_number`,`date_of_work`,`month_of_work`),
+    INDEX ( `cust_phone_number`)
+    ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci
+PARTITION BY RANGE (YEAR(`date_of_work`))
+SUBPARTITION BY KEY (`month_of_work`) 
+SUBPARTITIONS 12 (
+    PARTITION p2019 VALUES LESS THAN (2019),
+    PARTITION p2020 VALUES LESS THAN (2020),
+    PARTITION p2021 VALUES LESS THAN (2021),
+    PARTITION p2022 VALUES LESS THAN (2022),
+    PARTITION p2023 VALUES LESS THAN (2023),
+    PARTITION p2024 VALUES LESS THAN (2024),
+    PARTITION p2025 VALUES LESS THAN (2025),
+	PARTITION p2026 VALUES LESS THAN (2026),
+    PARTITION p2027 VALUES LESS THAN (2027),
+    PARTITION p2028 VALUES LESS THAN (2028),
+    PARTITION p2029 VALUES LESS THAN (2029),
+    PARTITION p2030 VALUES LESS THAN (2030),
+    PARTITION p2031 VALUES LESS THAN (2031),
+    PARTITION p2032 VALUES LESS THAN (2032),
+    PARTITION p2033 VALUES LESS THAN (2033),
+	PARTITION p2034 VALUES LESS THAN (2034),
+    PARTITION p2035 VALUES LESS THAN (2035),
+    PARTITION p2036 VALUES LESS THAN (2036),
+    PARTITION p2037 VALUES LESS THAN (2037),
+    PARTITION pmax VALUES LESS THAN MAXVALUE
+);
+
+
+Json 1 : 
+{
+	"name": "rajat batra",
+	"phoneNumber": "8168121337",
+	"address": "Kashipur",
+	"modelName": "KENT",
+	"dateOfWork": "2008-10-01",
+	"monthOfWork": "OCTOBER",
+	"technicianName": "Kiran",
+	"partCCV": 1000,
+	"partSedimentalfilter": 7200,
+	"partCarbonfilter": 0,
+	"partROMembrane": 0,
+	"partMultilayer": 70,
+	"partPPSpun": 0,
+	"partPump": 303,
+	"partSV": 567,
+	"partSMPS": 99,
+	"partVVLamp": 0,
+	"partService": 11,
+	"isAmc": true,
+	"amcDate": "2008-10-01",
+	"amcRenewed": false 
+}
+
+
