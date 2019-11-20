@@ -1,0 +1,36 @@
+plugins {
+	id 'org.springframework.boot' version '2.1.7.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+apply plugin: 'java-library'
+
+group = 'com.accolite'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-jdbc'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	runtimeOnly 'mysql:mysql-connector-java'
+	testCompile 'org.springframework.boot:spring-boot-starter-test'
+    	testImplementation 'junit:junit:4.12'
+    	
+}
+
+test {
+    filter {
+        includeTestsMatching "com.accolite.custom.test.runner.*"
+    }
+}
+
+task testCustom(type : Test) {
+	useJUnit {
+		include 'HotelBooking_Test/EvaluationTest.class'
+	}
+}
