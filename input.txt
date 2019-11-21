@@ -1,3 +1,5 @@
+create database NEWAQUA
+use NEWAQUA
 
 CREATE TABLE `AQUA_DETAILS` (
     `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
