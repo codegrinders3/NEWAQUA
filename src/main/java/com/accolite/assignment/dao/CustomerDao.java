@@ -26,6 +26,21 @@ public class CustomerDao {
         return sqlDao.query(sql, new CustomerMapper());
     }
 
+    public List<Customer> getCustomersByName(String name) {
+        String sql = "select * from AQUA_DETAILS where cust_name = \"" + name + "\"";
+        return sqlDao.query(sql, new CustomerMapper());
+    }
+
+    public List<Customer> getCustomersByAddr(String addr) {
+        String sql = "select * from AQUA_DETAILS where cust_address = \"" + addr + "\"";
+        return sqlDao.query(sql, new CustomerMapper());
+    }
+
+    public List<Customer> getCustomersByTechName(String techName) {
+        String sql = "select * from AQUA_DETAILS where technician_name = \"" + techName + "\"";
+        return sqlDao.query(sql, new CustomerMapper());
+    }
+
     public List<Customer> getCustomerByPhoneNumber(String phoneNumber) {
         String sql = "select * from AQUA_DETAILS where cust_phone_number= \"" + phoneNumber + "\"";
         return sqlDao.query(sql, new CustomerMapper());
@@ -38,6 +53,11 @@ public class CustomerDao {
 
     public List<Customer> getAMCDoneCustomer(String date) {
         String sql = "select * from AQUA_DETAILS where amc_date = date_of_work and date_of_work <= \"2018-12-12\"  and is_amc_renewed = false";
+        return sqlDao.query(sql, new CustomerMapper());
+    }
+
+    public List<Customer> getAllCustomer() {
+        String sql = "select * from AQUA_DETAILS";
         return sqlDao.query(sql, new CustomerMapper());
     }
 
