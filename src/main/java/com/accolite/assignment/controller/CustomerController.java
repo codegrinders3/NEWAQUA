@@ -4,16 +4,14 @@ import com.accolite.assignment.entity.ColumnDetails;
 import com.accolite.assignment.entity.Customer;
 import com.accolite.assignment.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping(value = "/customer",consumes = {"application/JSON"})
+@RequestMapping(value = "/customer")
 public class CustomerController {
     @Autowired
     private CustomerService customerService;
@@ -22,6 +20,23 @@ public class CustomerController {
     @RequestMapping(value = "/date", method = RequestMethod.POST)
     public List<Customer> getTodaysCustomers(@RequestBody String date) {
         return customerService.getTodaysCustomers(date);
+    }
+
+    // returns customer matching cust_name field
+    @RequestMapping(value = "/name", method = RequestMethod.POST)
+    public List<Customer> getCustomersByName(@RequestBody String name) {
+        return customerService.getCustomersByName(name);
+    }
+
+    // returns customer matching cust_address field
+    @RequestMapping(value = "/address", method = RequestMethod.POST)
+    public List<Customer> getCustomersByAddr(@RequestBody String addr) {
+        return customerService.getCustomersByAddr(addr);
+    }
+
+    @RequestMapping(value = "/technicianname", method = RequestMethod.POST)
+    public List<Customer> getCustomersByTechName(@RequestBody String techName) {
+        return customerService.getCustomersByTechName(techName);
     }
 
     @RequestMapping(value = "/phonenumber", method = RequestMethod.POST)
@@ -48,4 +63,9 @@ public class CustomerController {
         return customerService.getAMCDoneCustomer(date);
     }
 
+    @RequestMapping(method = RequestMethod.POST)
+
+    public List<Customer> getAllCustomer() {
+        return customerService.getAllCustomer();
+    }
 }
