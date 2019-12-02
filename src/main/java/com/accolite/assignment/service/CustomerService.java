@@ -18,21 +18,33 @@ public class CustomerService {
         return customerDao.getTodaysCustomers(date);
     }
 
-    public List<Customer> getCustomerByPhoneNumber(String phoneNumber) {
+    public List<Customer> getCustomersByName(String name){
+        return customerDao.getCustomersByName(name);
+    }
 
+    public List<Customer> getCustomersByAddr(String addr){
+        return customerDao.getCustomersByAddr(addr);
+    }
+
+    public List<Customer> getCustomerByPhoneNumber(String phoneNumber) {
         return customerDao.getCustomerByPhoneNumber(phoneNumber);
     }
 
-    public List<Customer> getCustomerByColumn(ColumnDetails columnDetails) {
+    public List<Customer> getCustomersByTechName(String techName) {
+        return customerDao.getCustomersByTechName(techName);
+    }
 
+    public List<Customer> getCustomerByColumn(ColumnDetails columnDetails) {
         return customerDao.getCustomerByColumn(columnDetails);
     }
 
     public List<Customer> getAMCDoneCustomer(String date) {
-
         return customerDao.getAMCDoneCustomer(date);
     }
 
+    public List<Customer> getAllCustomer() {
+        return customerDao.getAllCustomer();
+    }
 
     public int addCustomer(Customer customer) {
         return customerDao.addCustomer(customer);
